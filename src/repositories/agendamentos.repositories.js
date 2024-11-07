@@ -21,8 +21,12 @@ async function Listar(id_user) {
           console.log(err);
      }
 }
-//      let sql = `select * from appointments
+
+
+//   let sql = `select * from appointments
 //   order by booking_date, booking_hour `;
+
+
 async function ListarAll() {
      let sql = `select booking_date, booking_hour from appointments
   order by booking_date, booking_hour `;
