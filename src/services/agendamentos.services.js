@@ -24,4 +24,4 @@ async function Excluir(id_appointment) {
 }
 
 
-export default { Listar, ListarAll, Inserir, Excluir }
+export default { Listar, ListarAll, Inserir, Excluir,  }

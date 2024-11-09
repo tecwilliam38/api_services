@@ -22,6 +22,7 @@ async function Inserir(req, res) {
 
     res.status(201).json(appointment);
 }
+
 async function Excluir(req, res) {
 
     const id_appointment = req.params.id_appointment;

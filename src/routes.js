@@ -12,7 +12,7 @@ const router = Router();
 
 router.get("/barbers", jwt.ValidateToken, controllerBarber.Listar)
 router.get("/barbers/:id_barber/services", jwt.ValidateToken, controllerBarber.ListarServicos)
-router.post("/barbers", jwt.ValidateToken, controllerBarber.Inserir)
+router.post("/barbers",  controllerBarber.Inserir)
 router.delete("/barbers/:id_barber", jwt.ValidateToken, controllerBarber.Excluir)
 router.put("/barbers/:id_barber", jwt.ValidateToken, controllerBarber.Editar)
 
@@ -25,6 +25,7 @@ router.get("/users/profile", jwt.ValidateToken, controllerUser.Profile);
 router.get("/agenda/all", controllerAppointment.ListarAll);
 router.get("/agenda", jwt.ValidateToken, controllerAppointment.ListarByUser);
 router.post("/agenda", jwt.ValidateToken, controllerAppointment.Inserir);
+// router.post("/agenda/inserir", controllerAppointment.AInserir);
 router.delete("/agenda/:id_appointment", jwt.ValidateToken, controllerAppointment.Excluir);
 
 // Admins

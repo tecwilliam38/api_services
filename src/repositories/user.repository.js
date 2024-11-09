@@ -16,7 +16,7 @@ async function Inserir(name, email, password) {
     }
     const emailJaExiste = await verificaEmailExistente(email);
     if (emailJaExiste) {
-        // console.log('Email já cadastrado.');
+        console.log('Email já cadastrado.');
         return [];
     } else {
         // console.log('Email disponível para cadastro.');
