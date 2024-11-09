@@ -22,10 +22,8 @@ router.post("/users/login", controllerUser.Login);
 router.get("/users/profile", jwt.ValidateToken, controllerUser.Profile);
 
 // Reservas (appointments)...
-router.get("/agenda/all", controllerAppointment.ListarAll);
 router.get("/agenda", jwt.ValidateToken, controllerAppointment.ListarByUser);
 router.post("/agenda", jwt.ValidateToken, controllerAppointment.Inserir);
-// router.post("/agenda/inserir", controllerAppointment.AInserir);
 router.delete("/agenda/:id_appointment", jwt.ValidateToken, controllerAppointment.Excluir);
 
 // Admins

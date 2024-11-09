@@ -23,23 +23,6 @@ async function Listar(id_user) {
 }
 
 
-//   let sql = `select * from appointments
-//   order by booking_date, booking_hour `;
-
-
-async function ListarAll() {
-     let sql = `select booking_date, booking_hour from appointments
-  order by booking_date, booking_hour `;
-
-     try {
-          const appointments = await pool.query(sql);
-          return appointments.rows;
-     } catch (err) {
-          console.log(err);
-     }
-}
-
-
 async function Inserir(id_user, id_barber, id_service, booking_date, booking_hour) {
      async function verificaBooking_date(booking_date) {
           try {
@@ -48,7 +31,7 @@ async function Inserir(id_user, id_barber, id_service, booking_date, booking_hou
 
                return result.rows[0].count > 0; // Retorna true se o booking_date já existe
           } catch (error) {
-               console.error('Erro ao verificar booking:', error);
+               // console.error('Erro ao verificar booking:', error);
                return false;
           }
      }
@@ -57,9 +40,9 @@ async function Inserir(id_user, id_barber, id_service, booking_date, booking_hou
                const query = 'SELECT count(*) FROM appointments WHERE booking_hour = $1';
                const result = await pool.query(query, [booking_hour]);
 
-               return result.rows[0].count > 0; // Retorna true se o booking_date já existe
+               return result.rows[0].count > 0; // Retorna true se o booking_hour já existe
           } catch (error) {
-               console.error('Erro ao verificar booking:', error);
+               // console.error('Erro ao verificar booking:', error);
                return false;
           }
      }
@@ -88,22 +71,6 @@ async function Inserir(id_user, id_barber, id_service, booking_date, booking_hou
      }
 }
 
-// async function Inserir(id_user, id_barber, id_service, booking_date, booking_hour) {
-
-//      let sql = `insert into appointments(id_user,
-//          id_barber, id_service, booking_date, booking_hour) 
-//          values($1, $2, $3, $4, $5) returning id_appointment`;
-//      try {
-//           const appointment = await pool.query(sql, [id_user,
-//                id_barber, id_service, booking_date, booking_hour]);
-
-//           return appointment.rows[0];
-//      } catch (err) {
-//           console.log(err);
-
-//      }
-// }
-
 async function Excluir(id_appointment) {
 
      let sql = `delete from appointments where id_appointment = $1`;
@@ -118,5 +85,5 @@ async function Excluir(id_appointment) {
      }
 }
 
-export default { Listar, ListarAll, Inserir, Excluir }
+export default { Listar, Inserir, Excluir }
 

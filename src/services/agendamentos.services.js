@@ -4,10 +4,6 @@ async function Listar(id_user) {
     const appointments = await repoAppointment.Listar(id_user);
     return appointments;
 }
-async function ListarAll() {
-    const appointments = await repoAppointment.ListarAll();
-    return appointments;
-}
 
 async function Inserir(id_user, id_barber, id_service,
     booking_date, booking_hour) {
@@ -24,4 +20,4 @@ async function Excluir(id_appointment) {
 }
 
 
-export default { Listar, ListarAll, Inserir, Excluir,  }
+export default { Listar, Inserir, Excluir,  }
