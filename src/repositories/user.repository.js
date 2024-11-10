@@ -39,9 +39,8 @@ async function InserirAdmin(name, email, password) {
     return user.rows[0];
 }
 
-// Listar usuário
-async function ListarByEmail(email) {
-    let sql = `select * from users where email = $1`;
+async function ListarByEmailAdmin(email) {
+    let sql = `select * from admins where email = $1`;
     try {
         const user = await pool.query(sql, [email]);
 
@@ -53,8 +52,9 @@ async function ListarByEmail(email) {
         console.log(err);
     }
 }
-async function ListarByEmailAdmin(email) {
-    let sql = `select * from admins where email = $1`;
+// Listar usuário
+async function ListarByEmail(email) {
+    let sql = `select * from users where email = $1`;
     try {
         const user = await pool.query(sql, [email]);
 
