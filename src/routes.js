@@ -29,5 +29,6 @@ router.delete("/agenda/:id_appointment", jwt.ValidateToken, controllerAppointmen
 // Admins
 router.post("/admin/register", controllerUser.InserirAdmin);
 router.post("/admin/login", controllerUser.LoginAdmin);
+router.get("/admin/agenda", jwt.ValidateToken, controllerAppointment.Listar);
 
 export default router;
