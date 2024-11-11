@@ -2,7 +2,7 @@ import serviceAppointment from "../services/agendamentos.services.js"
 
 async function ListarByUser(req, res) {
     const id_user = req.id_user;
-    const appointments = await serviceAppointment.Listar(id_user,"","","");
+    const appointments = await serviceAppointment.Listar(id_user);
     res.status(200).json(appointments);
 }
 async function Listar(req, res) {
