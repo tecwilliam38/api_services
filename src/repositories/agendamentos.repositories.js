@@ -1,6 +1,6 @@
 import pool from "../database/pg.pool.js";
 
-async function Listar(id_user) {
+async function Listar(id_user, dt_start, dt_end, id_barber) {
 
      let filtro = [];
 
@@ -18,13 +18,28 @@ async function Listar(id_user) {
      // where a.id_user = $1
      // order by a.booking_date, a.booking_hour 
      
+  
      if (id_user) {
           filtro.push(id_user);
-          sql = sql + "and a.id_user = ? "
-     }
-
+          sql = sql + "and a.id_user = $0 "
+      }
+  
+      if (dt_start) {
+          filtro.push(dt_start);
+          sql = sql + "and a.booking_date >= $1 "
+      }
+  
+      if (dt_end) {
+          filtro.push(dt_end);
+          sql = sql + "and a.booking_date <= $2 "
+      }
+  
+      if (id_barber) {
+          filtro.push(id_barber);
+          sql = sql + "and a.id_barber = $3 "
+      }
      try {
-          const appointments = await query(sql, filtro);
+          const appointments = await pool.query(sql, filtro);
           return appointments.rows;
      } catch (err) {
           console.log(err);
@@ -37,7 +52,6 @@ async function Inserir(id_user, id_barber, id_service, booking_date, booking_hou
           try {
                const query = 'SELECT count(*) FROM appointments WHERE booking_date = $1';
                const result = await pool.query(query, [booking_date]);
-
                return result.rows[0].count > 0; // Retorna true se o booking_date já existe
           } catch (error) {
                // console.error('Erro ao verificar booking:', error);

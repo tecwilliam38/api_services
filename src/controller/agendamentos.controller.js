@@ -10,7 +10,7 @@ async function Listar(req, res) {
     const dt_end = req.query.dt_end;
     const id_barber = req.query.id_barber;
 
-    const appointments = await serviceAppointment.Listar(0,dt_start, dt_end, id_barber);
+    const appointments = await serviceAppointment.Listar(dt_start, dt_end, id_barber);
     res.status(200).json(appointments);
 }
 
