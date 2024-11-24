@@ -12,6 +12,7 @@ async function Inserir(name, specialty, icon) {
 }
 
 async function ListarServicos(id_barber) {
+    
     let sql = `select b.id_service, s.description, b.price
     from barbers_services b
     join services s on (s.id_service = b.id_service)

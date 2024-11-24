@@ -1,7 +1,14 @@
 import repoAppointment from "../repositories/agendamentos.repositories.js"
 
 async function Listar(id_user, dt_start, dt_end, id_barber) {
+   
     const appointments = await repoAppointment.Listar(id_user, dt_start, dt_end, id_barber);
+   
+    return appointments;
+}
+
+async function ListarAll() {
+    const appointments = await repoAppointment.ListarAll();
     return appointments;
 }
 
@@ -20,4 +27,4 @@ async function Excluir(id_appointment) {
 }
 
 
-export default { Listar, Inserir, Excluir,  }
+export default { Listar, Inserir, Excluir, ListarAll }

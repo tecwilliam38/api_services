@@ -15,6 +15,18 @@ import pool from "../database/pg.pool.js";
 //                          ds.id_service = a.id_service)
 //  where a.id_appointment > 0 `;
 
+async function ListarAll() {
+     let sql = `select * from appointments
+  order by booking_date, booking_hour `; 
+try {
+     const appointments = await pool.query(sql);
+     return appointments.rows; 
+     
+} catch (error) {
+     console.log(err);          
+}
+}
+
 async function Listar(id_user, dt_start, dt_end, id_barber) {
      let filtro = [];
      let sql = `
@@ -52,7 +64,7 @@ async function Listar(id_user, dt_start, dt_end, id_barber) {
      sql += " ORDER BY a.booking_date, a.booking_hour";
  
      const appointments = await pool.query(sql, filtro);
-     return appointments;
+     return appointments.rows;
  }
  
 
@@ -118,5 +130,5 @@ async function Excluir(id_appointment) {
      }
 }
 
-export default { Listar, Inserir, Excluir }
+export default { Listar, Inserir, Excluir , ListarAll}
 

@@ -29,6 +29,16 @@ router.delete("/agenda/:id_appointment", jwt.ValidateToken, controllerAppointmen
 // Admins
 router.post("/admin/register", controllerUser.InserirAdmin);
 router.post("/admin/login", controllerUser.LoginAdmin);
-router.get("/admin/agenda", jwt.ValidateToken, controllerAppointment.Listar);
+router.get("/admin/agenda", controllerAppointment.Listar);
+
+// router.post("/admin/register", controllerUser.InserirAdmin);
+// router.post("/admin/login", controllerUser.LoginAdmin);
+// router.get("/admin/appointments", jwt.ValidateToken, controllerAppointment.Listar);
+// router.get("/admin/users", jwt.ValidateToken, controllerUser.Listar);
+// router.get("/admin/appointments/:id_appointment", jwt.ValidateToken, controllerAppointment.ListarId);
+// router.post("/admin/appointments", jwt.ValidateToken, controllerAppointment.InserirAdmin);
+// router.put("/admin/appointments/:id_appointment", jwt.ValidateToken, controllerAppointment.EditarAdmin);
+
+
 
 export default router;
