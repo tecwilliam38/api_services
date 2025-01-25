@@ -26,7 +26,7 @@ async function Inserir(name, email, password) {
         const user = await pool.query(sql, [name, email, password]);
         return user.rows[0];
 
-    }   
+    }
 }
 
 // Administrador
@@ -75,6 +75,10 @@ async function Profile(id_user) {
 
     return user.rows[0];
 }
-
-export default { Inserir, ListarByEmail, Profile, InserirAdmin, ListarByEmailAdmin }
+async function Listar() {
+    let sql = `select id_user, name, email from users order by name`;
+    const users = await pool.query(sql, []);
+    return users;
+}
+export default { Inserir, ListarByEmail, Profile, InserirAdmin, ListarByEmailAdmin, Listar }
 

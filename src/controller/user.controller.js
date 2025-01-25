@@ -28,11 +28,11 @@ async function Inserir(req, res) {
         else
             res.status(200).json(user);
     }
- 
- async function Login(req, res) {
- 
-     const { email, password } = req.body;
- 
+    
+    async function Login(req, res) {
+        
+        const { email, password } = req.body;
+        
      const user = await serviceUser.Login(email, password);
  
      if (user.length == 0)
@@ -49,5 +49,11 @@ async function Inserir(req, res) {
      res.status(200).json(user);
  }
  
- export default { Inserir, Login, Profile, InserirAdmin, LoginAdmin }
+ async function Listar(req, res) {
+ 
+     const users = await serviceUser.ListarUser();
+ 
+         res.status(200).json(users);
+ }
+ export default { Inserir, Login, Profile, InserirAdmin, LoginAdmin, Listar }
 

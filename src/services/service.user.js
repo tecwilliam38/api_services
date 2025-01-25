@@ -67,5 +67,12 @@ async function InserirAdmin(name, email, password) {
      return user;
  }
  
- export default { Inserir, Login, Profile, InserirAdmin, LoginAdmin }
+ async function ListarUser() {
+ 
+     const user = await repoUser.Listar();
+ 
+     return user;
+ }
+ 
+ export default { Inserir, Login, Profile, InserirAdmin, LoginAdmin, ListarUser }
 
