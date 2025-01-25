@@ -7,6 +7,13 @@ async function Listar(id_user, dt_start, dt_end, id_barber) {
     return appointments;
 }
 
+async function ListarAgenda(id_appointment) {
+   
+    const appointments = await repoAppointment.ListarAgendaId(id_appointment);
+   
+    return appointments;
+}
+
 async function ListarAll() {
     const appointments = await repoAppointment.ListarAll();
     return appointments;
@@ -36,4 +43,4 @@ async function Editar(id_appointment, id_user,
 }
 
 
-export default { Listar, Inserir, Excluir, ListarAll, Editar }
+export default { Listar, Inserir, Excluir, ListarAll, Editar, ListarAgenda }

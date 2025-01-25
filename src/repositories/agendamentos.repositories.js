@@ -12,6 +12,23 @@ try {
 }
 }
 
+async function ListarAgendaId(id_appointment) {
+
+     let sql = `
+         SELECT a.id_appointment, s.description AS service,
+                b.name AS barber, b.specialty,
+                a.booking_date, a.booking_hour, u.name as user, bs.price, a.id_barber,
+                a.id_service, a.id_user
+         FROM appointments a
+         JOIN services s ON (s.id_service = a.id_service)
+         JOIN barbers b ON (b.id_barber = a.id_barber)
+         JOIN users u ON (u.id_user = a.id_user)
+         JOIN barbers_services bs ON (bs.id_barber = a.id_barber AND bs.id_service = a.id_service)
+         WHERE a.id_appointment = $1`;
+         
+     const appointments = await pool.query(sql, [id_appointment]);
+     return appointments.rows[0];
+ }
 async function Listar(id_user, dt_start, dt_end, id_barber) {
      let filtro = [];
      let sql = `
@@ -51,7 +68,6 @@ async function Listar(id_user, dt_start, dt_end, id_barber) {
      const appointments = await pool.query(sql, filtro);
      return appointments.rows;
  }
- 
 
 
 async function Inserir(id_user, id_barber, id_service, booking_date, booking_hour) {
@@ -127,5 +143,5 @@ async function Editar(id_appointment, id_user,
      return { id_appointment };
  }
 
-export default { Listar, Inserir, Excluir , ListarAll, Editar}
+export default { Listar, Inserir, Excluir , ListarAll, Editar, ListarAgendaId}
 

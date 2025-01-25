@@ -7,12 +7,21 @@ async function ListarByUser(req, res) {
     res.status(200).json(appointments);
 }
 
+// const appointments = await serviceAppointment.ListarAgenda(id_appointment, 0, 0, 0);
+async function ListarId(req, res) {
+
+    const id_appointment = req.params.id_appointment;
+    const appointments = await serviceAppointment.ListarAgenda(id_appointment);
+
+    res.status(200).json(appointments);
+}
+
 async function Listar(req, res) {
     const dt_start = req.query.dt_start;
     const dt_end = req.query.dt_end;
     const id_barber = req.query.id_barber;
 
-    const appointments = await serviceAppointment.Listar(0,dt_start, dt_end, id_barber);
+    const appointments = await serviceAppointment.Listar(0, dt_start, dt_end, id_barber);
     res.status(200).json(appointments);
     //   const appointments = await serviceAppointment.ListarAll(); 
     //  res.status(200).json(appointments);
@@ -50,4 +59,4 @@ async function EditarAdmin(req, res) {
     res.status(200).json(appointment);
 }
 
-export default { ListarByUser, Inserir, Excluir, Listar, EditarAdmin };
+export default { ListarByUser, Inserir, Excluir, Listar, EditarAdmin, ListarId };
