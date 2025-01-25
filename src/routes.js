@@ -39,6 +39,7 @@ router.put("/admin/agenda/:id_appointment", jwt.ValidateToken, controllerAppoint
 
 // router.get("/admin/users", jwt.ValidateToken, controllerUser.Listar);
 // router.post("/admin/appointments", jwt.ValidateToken, controllerAppointment.InserirAdmin);
+// router.post("/admin/appointments", jwt.ValidateToken, controllerAppointment.InserirAdmin);
 
 
 
