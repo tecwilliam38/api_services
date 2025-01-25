@@ -26,5 +26,14 @@ async function Excluir(id_appointment) {
     return barber;
 }
 
+async function Editar(id_appointment, id_user,
+    id_barber, id_service, booking_date, booking_hour) {
 
-export default { Listar, Inserir, Excluir, ListarAll }
+    const appointment = await repoAppointment.Editar(id_appointment, id_user,
+        id_barber, id_service, booking_date, booking_hour);
+
+    return appointment;
+}
+
+
+export default { Listar, Inserir, Excluir, ListarAll, Editar }

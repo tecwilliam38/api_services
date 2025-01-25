@@ -2,7 +2,7 @@ import pg from 'pg'
 const { Pool } = pg
 // import "dotenv/config.js"
 
-import 'dotenv/config'
+// import 'dotenv/config'
 // console.log(process.env) // remova após confirmar que está funcionando
 
 // const PGUSER = process.env.PGUSER;
