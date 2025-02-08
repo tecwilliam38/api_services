@@ -70,7 +70,48 @@ async function Listar(id_user, dt_start, dt_end, id_barber) {
  }
 
 
-async function Inserir(id_user, id_barber, id_service, booking_date, booking_hour) {
+async function Excluir(id_appointment) {
+
+     let sql = `delete from appointments where id_appointment = $1`;
+
+     try {
+          const appointment = await pool.query(sql, [id_appointment]);
+
+          return { id_appointment };
+     } catch (err) {
+          console.log(err);
+
+     }
+}
+
+async function Editar(id_appointment, id_user,
+     id_barber, id_service, booking_date, booking_hour) {
+ 
+     let sql = `update appointments set id_user=$1, id_barber=$2, 
+     id_service=$3, booking_date=$4, booking_hour=$5 
+     where id_appointment=$0`;
+ 
+     await pool.query(sql, [id_user,
+         id_barber, id_service, booking_date, booking_hour, id_appointment]);
+ 
+     return { id_appointment };
+ }
+
+async function EditarAgenda(id_appointment, id_user,
+     id_barber, id_service, booking_date, booking_hour) {
+ 
+     let sql = `update appointments set id_user=$1, id_barber=$2, 
+     id_service=$3, booking_date=$4, booking_hour=$5 
+     where id_appointment=$6`;
+ 
+     await pool.query(sql, [id_user,
+         id_barber, id_service, booking_date, booking_hour, id_appointment]);
+ 
+     return { id_appointment };
+ }
+
+
+ async function Inserir(id_user, id_barber, id_service, booking_date, booking_hour) {
      async function verificaBooking_date(booking_date) {
           try {
                const query = 'SELECT count(*) FROM appointments WHERE booking_date = $1';
@@ -116,47 +157,6 @@ async function Inserir(id_user, id_barber, id_service, booking_date, booking_hou
 
      }
 }         
-
-async function Excluir(id_appointment) {
-
-     let sql = `delete from appointments where id_appointment = $1`;
-
-     try {
-          const appointment = await pool.query(sql, [id_appointment]);
-
-          return { id_appointment };
-     } catch (err) {
-          console.log(err);
-
-     }
-}
-
-async function Editar(id_appointment, id_user,
-     id_barber, id_service, booking_date, booking_hour) {
- 
-     let sql = `update appointments set id_user=$1, id_barber=$2, 
-     id_service=$3, booking_date=$4, booking_hour=$5 
-     where id_appointment=$0`;
- 
-     await pool.query(sql, [id_user,
-         id_barber, id_service, booking_date, booking_hour, id_appointment]);
- 
-     return { id_appointment };
- }
-
-async function EditarAgenda(id_appointment, id_user,
-     id_barber, id_service, booking_date, booking_hour) {
- 
-     let sql = `update appointments set id_user=$1, id_barber=$2, 
-     id_service=$3, booking_date=$4, booking_hour=$5 
-     where id_appointment=$6`;
- 
-     await pool.query(sql, [id_user,
-         id_barber, id_service, booking_date, booking_hour, id_appointment]);
- 
-     return { id_appointment };
- }
-
 
  async function InserirAgenda(id_user, id_barber, id_service, booking_date, booking_hour) {
       async function verificaBooking_date(booking_date) {
