@@ -51,9 +51,9 @@ async function Inserir(req, res) {
  async function ProfileAdmin(req, res) {
  
      const id_admin = req.id_admin;
-     const user = await serviceUser.ProfileAdmin(id_admin);
+     const admin = await serviceUser.ProfileAdmin(id_admin);
  
-     res.status(200).json(user);
+     res.status(200).json(admin);
  }
  
  async function Listar(req, res) {
