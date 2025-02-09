@@ -48,6 +48,13 @@ async function Inserir(req, res) {
  
      res.status(200).json(user);
  }
+ async function ProfileAdmin(req, res) {
+ 
+     const id_admin = req.id_admin;
+     const user = await serviceUser.ProfileAdmin(id_admin);
+ 
+     res.status(200).json(user);
+ }
  
  async function Listar(req, res) {
  
@@ -55,5 +62,5 @@ async function Inserir(req, res) {
  
          res.status(200).json(users);
  }
- export default { Inserir, Login, Profile, InserirAdmin, LoginAdmin, Listar }
+ export default { Inserir, Login, Profile, InserirAdmin, LoginAdmin, Listar, ProfileAdmin }
 

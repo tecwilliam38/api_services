@@ -75,10 +75,20 @@ async function Profile(id_user) {
 
     return user.rows[0];
 }
+
+async function ProfileAdmin(id_admin) {
+
+    let sql = `select id_admin, name, email from admins where id_admin = $1`;
+
+    const admin = await pool.query(sql, [id_admin]);
+
+    return admin.rows[0];
+}
+
 async function Listar() {
     let sql = `select id_user, name, email from users order by name`;
     const users = await pool.query(sql, []);
     return users;
 }
-export default { Inserir, ListarByEmail, Profile, InserirAdmin, ListarByEmailAdmin, Listar }
+export default { Inserir, ListarByEmail, Profile, InserirAdmin, ListarByEmailAdmin, Listar, ProfileAdmin }
 
